@@ -5,13 +5,18 @@ GLMmodel * head = NULL;///week13 Step02-1
 GLMmodel * body = NULL;///week13 Step02-1
 GLMmodel * uparmL = NULL;///week13 Step02-1
 GLMmodel * lowarmL = NULL;///week13 Step02-1
-int show[4] = {0,1,0,0};
+int show[4] = {1,1,1,1};
+int ID=0;
 void keyboard(unsigned char key, int x, int y)
 {
-    if(key== '0') show[0] = !show[0];///week13 Step03-1
-    if(key== '1') show[1] = !show[1];///week13 Step03-1
-    if(key== '2') show[2] = !show[2];///week13 Step03-1
-    if(key== '3') show[3] = !show[3];///week13 Step03-1
+    if(key== '0') ID=0;
+    if(key== '1') ID=1;
+    if(key== '2') ID=2;
+    if(key== '3') ID=3;
+    ///if(key== '0') show[0] = !show[0];///week13 Step03-1
+    ///if(key== '1') show[1] = !show[1];///week13 Step03-1
+    ///if(key== '2') show[2] = !show[2];///week13 Step03-1
+    ///if(key== '3') show[3] = !show[3];///week13 Step03-1
     glutPostRedisplay();
 }
 FILE * fout =NULL;
@@ -32,12 +37,22 @@ void display()
         lowarmL = glmReadOBJ("model/lowarmL.obj");///week13 Step03-1
         ///glmUnitize(body);
     }
+    if(ID==0) glColor3f(1,0,0);///選定的設紅色
+    else glColor3f(1,1,1);///沒選設白色
     if(show[0])glmDraw(head, GLM_MATERIAL);///week13 Step03-1
+
+    if(ID==1) glColor3f(1,0,0);///選定的設紅色
+    else glColor3f(1,1,1);///沒選設白色
     if(show[1])glmDraw(body, GLM_MATERIAL);///week13 Step03-1
     glPushMatrix();
         glTranslatef(teapotX,teapotY,0);
+        if(ID==2) glColor3f(1,0,0);///選定的設紅色
+        else glColor3f(1,1,1);///沒選設白色
         if(show[2])glmDraw(uparmL , GLM_MATERIAL);///week13 Step03-1
     glPopMatrix();
+
+    if(ID==3) glColor3f(1,0,0);///選定的設紅色
+    else glColor3f(1,1,1);///沒選設白色
     if(show[3])glmDraw(lowarmL , GLM_MATERIAL);///week13 Step03-1
     glPopMatrix();
     glutSwapBuffers();
