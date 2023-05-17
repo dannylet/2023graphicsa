@@ -6,7 +6,7 @@ GLMmodel * body = NULL;///week13 Step02-1
 GLMmodel * uparmL = NULL;///week13 Step02-1
 GLMmodel * lowarmL = NULL;///week13 Step02-1
 int show[4] = {1,1,1,1};
-int ID=0;
+int ID=2;
 void keyboard(unsigned char key, int x, int y)
 {
     if(key== '0') ID=0;
@@ -45,16 +45,26 @@ void display()
     else glColor3f(1,1,1);///沒選設白色
     if(show[1])glmDraw(body, GLM_MATERIAL);///week13 Step03-1
     glPushMatrix();
-        glTranslatef(teapotX,teapotY,0);
+        glTranslatef(0.653333, 0.193333, 0);
+        glRotatef(angle ,0,0,1);
+        glTranslatef(-0.653333, -0.193333, 0);
         if(ID==2) glColor3f(1,0,0);///選定的設紅色
         else glColor3f(1,1,1);///沒選設白色
         if(show[2])glmDraw(uparmL , GLM_MATERIAL);///week13 Step03-1
     glPopMatrix();
 
+
+    glPushMatrix();
+        glTranslatef(0.986666, -0.020000, 0);
+        glRotatef(angle ,0,0,1);
+        glTranslatef(-0.986666, 0.020000, 0);
     if(ID==3) glColor3f(1,0,0);///選定的設紅色
     else glColor3f(1,1,1);///沒選設白色
     if(show[3])glmDraw(lowarmL , GLM_MATERIAL);///week13 Step03-1
     glPopMatrix();
+    glPopMatrix();
+    glColor3f(0,1,0);
+    glutSolidTeapot(0.02);
     glutSwapBuffers();
 }
 int oldX=0, oldY=0;
@@ -64,6 +74,7 @@ void motion(int x,int y)
     teapotY -= (y-oldY)/150.0;
     oldX = x;
     oldY = y;
+    angle = x;
     printf("glTranslatef(%f, %f, 0);\n", teapotX, teapotY);
     glutPostRedisplay();
 }
