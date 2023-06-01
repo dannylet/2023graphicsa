@@ -9,7 +9,9 @@ GLMmodel * head = NULL;///week13 Step02-1
 GLMmodel * body = NULL;///week13 Step02-1
 GLMmodel * righthand = NULL;///week13 Step02-1
 GLMmodel * lefthand = NULL;///week13 Step02-1
-int show[4] = {1,0,0,0};
+GLMmodel * leftleg = NULL;
+GLMmodel * rightleg = NULL;
+int show[6] = {1,1,1,1,1,1};
 int ID=2;
 FILE * fout = NULL;
 FILE * fin = NULL;
@@ -21,6 +23,8 @@ void keyboard(unsigned char key, int x, int y)
     if(key== '1') ID=1;
     if(key== '2') ID=2;
     if(key== '3') ID=3;
+    if(key== '4') ID=4;
+    if(key== '5') ID=5;
     if(key=='s')
     {
         if(fout == NULL)fout =fopen("motion.txt","w");
@@ -48,7 +52,7 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
-        glScalef(0.2,0.2,0.2);
+        glScalef(0.15,0.14,0.15);
         ///glTranslatef(teapotX,teapotY, 0);
         ///glutSolidTeapot(0.3);
     if(body == NULL){
@@ -56,10 +60,10 @@ void display()
         body = glmReadOBJ("model/body.obj");///week13 Step02-1
         righthand = glmReadOBJ("model/righthand.obj");///week13 Step03-1
         lefthand = glmReadOBJ("model/lefthand.obj");///week13 Step03-1
+        leftleg = glmReadOBJ("model/leftleg.obj");
+        rightleg = glmReadOBJ("model/rightleg.obj");
         ///glmUnitize(body);
     }
-    if(ID==0) glColor3f(1,0,0);///選定的設紅色
-    else glColor3f(1,1,1);///沒選設白色///week13 Step03-1
     glPushMatrix();
         glTranslatef(-0.040000, 2.419998, 0);
         glRotatef(angle[0] ,0,0,1);
@@ -71,13 +75,18 @@ void display()
     glPopMatrix();
 
 
+    glPushMatrix();
+        glTranslatef(-0.033333, 2.993332, 0);
+        glRotatef(angle[1] ,0,0,1);
+        ///glRotatef(angle[1], 1, 0, 0);///week15_step03-1
+        glTranslatef(0.033333, -2.993332, 0);
+        if(ID==1) glColor3f(1,0,0);///選定的設紅色
+        else glColor3f(1,1,1);///沒選設白色
+        if(show[1])glmDraw(body , GLM_MATERIAL);///week13 Step03-1
+    glPopMatrix();
 
-    if(ID==1) glColor3f(1,0,0);///選定的設紅色
-    else glColor3f(1,1,1);///沒選設白色
 
 
-
-    if(show[1])glmDraw(body, GLM_MATERIAL);///week13 Step03-1
     glPushMatrix();
         glTranslatef(-1.299999, 1.733332, 0);
         glRotatef(angle[2] ,0,0,1);
@@ -97,6 +106,44 @@ void display()
     else glColor3f(1,1,1);///沒選設白色
     if(show[3])glmDraw(lefthand , GLM_MATERIAL);///week13 Step03-1
     glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(0.666666, 0.533333, 0);
+        glRotatef(angle[4] ,0,0,1);
+        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
+        glTranslatef(-0.666666, -0.533333, 0);
+        if(ID==4) glColor3f(1,0,0);///選定的設紅色
+        else glColor3f(1,1,1);///沒選設白色
+        if(show[4])glmDraw(leftleg , GLM_MATERIAL);///week13 Step03-1
+    glPopMatrix();
+
+
+    glPushMatrix();
+        glTranslatef(-0.706666, 0.546666, 0);
+        glRotatef(angle[5] ,0,0,1);
+        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
+        ///glTranslatef(teapotX,teapotY, 0);
+        glTranslatef(0.706666, -0.546666, 0);
+        if(ID==5) glColor3f(1,0,0);///選定的設紅色
+        else glColor3f(1,1,1);///沒選設白色
+        if(show[5])glmDraw(rightleg , GLM_MATERIAL);///week13 Step03-1
+    glPopMatrix();
+
+
+    ///glPushMatrix();
+        ///glTranslatef(-0.706666, 0.546666, 0);
+        ///glRotatef(angle[6] ,0,0,1);
+        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
+        ///glTranslatef(teapotX,teapotY, 0);
+        ///glTranslatef(teapotX,teapotY, 0);
+        ///if(ID==6) glColor3f(1,0,0);///選定的設紅色
+        ///else glColor3f(1,1,1);///沒選設白色
+        ///if(show[6])glmDraw( , GLM_MATERIAL);///week13 Step03-1
+    ///glPopMatrix();
+
+
+
+
     glPopMatrix();
     glColor3f(0,1,0);
     glutSolidTeapot(0.02);
@@ -141,7 +188,7 @@ int main(int argc, char** argv)
 {
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
-    glutCreateWindow("week15");
+    glutCreateWindow("10161034");
 
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
