@@ -31,13 +31,13 @@ GLMmodel * righthand = NULL;///week13 Step02-1
 GLMmodel * lefthand = NULL;///week13 Step02-1
 GLMmodel * leftleg = NULL;
 GLMmodel * rightleg = NULL;
-GLMmodel * pom = NULL;
 int show[7] = {1,1,1,1,1,1,0};
 int ID=2;
 FILE * fout = NULL;
 FILE * fin = NULL;
 float teapotX=0, teapotY=0;
-float angle[20]={};///week15_step03-1
+float angle[20]={};
+float angle2[20]={};///week15_step03-1
 void keyboard(unsigned char key, int x, int y)
 {
     if(key== '0') ID=0;
@@ -70,7 +70,7 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
-        glScalef(0.07,0.07,0.07);
+        glScalef(0.05,0.05,0.05);
         ///glTranslatef(teapotX,teapotY, 0);
         ///glutSolidTeapot(0.3);
 
@@ -81,10 +81,10 @@ void display()
 
 
     glPushMatrix();
-        glTranslatef(-0.040000, 2.419998, 0);
-        glRotatef(angle[0] ,0,0,1);
-        glRotatef(angle[0], 1, 0, 0);///week15_step03-1
-        glTranslatef(0.040000, -2.419998, 0);
+        glTranslatef(0.000000, 5.800000, 0);
+        glRotatef(angle[0],0,1,0);
+        glRotatef(angle2[0], 1, 0, 0);///week15_step03-1
+        glTranslatef(-0.000000, -5.800000, 0);
         if(ID==0) glColor3f(1,0,0);///選定的設紅色
         else glColor3f(1,1,1);///沒選設白色
         if(show[0])glmDraw(head , GLM_MATERIAL| GLM_TEXTURE);///week13 Step03-1
@@ -93,8 +93,8 @@ void display()
 
     glPushMatrix();
         glTranslatef(-0.033333, 2.993332, 0);
-        glRotatef(angle[1] ,0,0,1);
-        ///glRotatef(angle[1], 1, 0, 0);///week15_step03-1
+        glRotatef(angle[1] ,0,1,0);
+        glRotatef(angle2[1], 1, 0, 0);///week15_step03-1
         glTranslatef(0.033333, -2.993332, 0);
         if(ID==1) glColor3f(1,0,0);///選定的設紅色
         else glColor3f(1,1,1);///沒選設白色
@@ -104,10 +104,11 @@ void display()
 
 
     glPushMatrix();
-        glTranslatef(-1.299999, 1.733332, 0);
-        glRotatef(angle[2] ,0,0,1);
-        glRotatef(angle[2], 1, 0, 0);///week15_step03-1
-        glTranslatef(1.299999, -1.733332, 0);
+        glTranslatef(1.300000, 5.000001, 0);
+        glRotatef(angle[2] ,0,1,0);
+        glRotatef(angle2[2],1,0,0);///week15_step03-1
+        glTranslatef(-1.300000, -5.000001, 0);
+        ///glTranslatef(teapotX,teapotY, 0);
         if(ID==2) glColor3f(1,0,0);///選定的設紅色
         else glColor3f(1,1,1);///沒選設白色
         if(show[2])glmDraw(righthand , GLM_MATERIAL| GLM_TEXTURE);///week13 Step03-1
@@ -116,7 +117,8 @@ void display()
 
     glPushMatrix();
         glTranslatef(1.226666, 1.653332, 0);
-        glRotatef(angle[3] ,0,0,1);///week15_step03-1
+        glRotatef(angle[3] ,0,0,1);
+        glRotatef(angle2[3] ,0,0,1);
         glTranslatef(-1.226666, -1.653332, 0);
     if(ID==3) glColor3f(1,0,0);///選定的設紅色
     else glColor3f(1,1,1);///沒選設白色
@@ -126,7 +128,7 @@ void display()
     glPushMatrix();
         glTranslatef(0.666666, 0.533333, 0);
         glRotatef(angle[4] ,0,0,1);
-        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
+        ///glRotatef(angle2[4], 1, 0, 0);///week15_step03-1
         glTranslatef(-0.666666, -0.533333, 0);
         if(ID==4) glColor3f(1,0,0);///選定的設紅色
         else glColor3f(1,1,1);///沒選設白色
@@ -137,7 +139,7 @@ void display()
     glPushMatrix();
         glTranslatef(-0.706666, 0.546666, 0);
         glRotatef(angle[5] ,0,0,1);
-        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
+        ///glRotatef(angle2[4], 1, 0, 0);///week15_step03-1
         ///glTranslatef(teapotX,teapotY, 0);
         glTranslatef(0.706666, -0.546666, 0);
         if(ID==5) glColor3f(1,0,0);///選定的設紅色
@@ -146,31 +148,19 @@ void display()
     glPopMatrix();
 
 
-    ///glPushMatrix();
-        ///glTranslatef(-0.706666, 0.546666, 0);
-        ///glRotatef(angle[6] ,0,0,1);
-        ///glRotatef(angle[4], 1, 0, 0);///week15_step03-1
-        ///glTranslatef(teapotX,teapotY, 0);
-        ///glTranslatef(teapotX,teapotY, 0);
-        ///if(ID==6) glColor3f(1,0,0);///選定的設紅色
-        ///else glColor3f(1,1,1);///沒選設白色
-        ///if(show[6])glmDraw( , GLM_MATERIAL);///week13 Step03-1
-    ///glPopMatrix();
-
-
-
 
     glPopMatrix();
     glColor3f(0,1,0);
     glutSolidTeapot(0.02);
     glutSwapBuffers();
 }
-int oldX=0, oldY=0;
+float oldX=0, oldY=0;
 void motion(int x,int y)
 {
     teapotX += (x -oldX)/10.0;
-    teapotY -= (y -oldY)/10.0;
-    angle[ID] += (x- oldX);///week15_step03-1
+    teapotY += (oldY - y)/10.0;
+    angle[ID] += (x- oldX);
+    angle2[ID] += (y- oldY);
     oldX = x;
     oldY = y;
     printf("glTranslatef(%f, %f, 0);\n", teapotX, teapotY);
@@ -213,7 +203,6 @@ int main(int argc, char** argv)
     lefthand = glmReadOBJ("model/lefthand.obj");
     leftleg = glmReadOBJ("model/leftleg.obj");
     rightleg = glmReadOBJ("model/rightleg.obj");
-    pom = glmReadOBJ("model/pom.obj");
 
     myTexture("model/ba.jpg");
     glEnable(GL_DEPTH_TEST);
