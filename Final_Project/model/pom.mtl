@@ -1,4 +1,40 @@
+newmtl pamon:m0
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.75 0.75 0.75
+Tf 1.00 1.00 1.00
+map_Kd ba.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
 newmtl pamon:m2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.75 0.75 0.75
+Tf 1.00 1.00 1.00
+map_Kd ba.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl pamon:m4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.75 0.75 0.75
+Tf 1.00 1.00 1.00
+map_Kd ba.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl pamon:m6
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.75 0.75 0.75
+Tf 1.00 1.00 1.00
+map_Kd ba.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl pamon:m8
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.75 0.75 0.75
@@ -17,6 +53,15 @@ Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 0.00
 newmtl pamon:m12
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.75 0.75 0.75
+Tf 1.00 1.00 1.00
+map_Kd ba.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl pamon:m14
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.75 0.75 0.75
