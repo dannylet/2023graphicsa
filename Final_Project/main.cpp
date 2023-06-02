@@ -40,6 +40,30 @@ FILE * fin = NULL;
 float teapotX=0, teapotY=0;
 float angle[20]={};
 float angle2[20]={};
+float OldAngle[20]={}, NewAngle[20]={};
+float OldAngle2[20]={}, NewAngle2[20]={};
+void timer (int t)
+{
+    printf("t:%d\n",t);
+    glutTimerFunc(20, timer, t+1);
+    if(t%50==0)
+    {
+        if(fin==NULL) fin=fopen("motion.txt", "r");
+        for(int i=0; i<20; i++)
+        {
+            OldAngle[i] = NewAngle[i];
+            OldAngle2[i] = NewAngle2[i];
+            fscanf(fin, "%f", &NewAngle[i] );
+            fscanf(fin, "%f", &NewAngle2[i] );
+        }
+    }
+    float alpha = (t%50) / 50.0;
+    for(int i=0; i<20; i++){
+        angle[i] = alpha * NewAngle[i] + (1-alpha) * OldAngle[i];
+        angle2[i] = alpha * NewAngle2[i] + (1-alpha) * OldAngle2[i];
+    }
+    glutPostRedisplay();
+}
 void keyboard(unsigned char key, int x, int y)
 {
     if(key== '0') ID=0;
@@ -70,6 +94,10 @@ void keyboard(unsigned char key, int x, int y)
             fscanf(fin, "%f", &angle2[i]);
         }
         glutPostRedisplay();
+    }
+    if(key =='p')
+    {
+        glutTimerFunc(0, timer, 0);
     }
 }
 void display()
