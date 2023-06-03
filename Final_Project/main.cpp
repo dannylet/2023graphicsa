@@ -45,7 +45,7 @@ float OldAngle2[20]={}, NewAngle2[20]={};
 void timer (int t)
 {
     printf("t:%d\n",t);
-    glutTimerFunc(20, timer, t+1);
+    glutTimerFunc(8, timer, t+1);
     if(t%50==0)
     {
         if(fin==NULL) fin=fopen("motion.txt", "r");
@@ -66,14 +66,14 @@ void timer (int t)
 }
 void keyboard(unsigned char key, int x, int y)
 {
-    if(key== '0') ID=0;
-    if(key== '1') ID=1;
-    if(key== '2') ID=2;
-    if(key== '3') ID=3;
-    if(key== '4') ID=4;
-    if(key== '5') ID=5;
-    if(key== '6') ID=6;
-    if(key== '7') ID=7;
+    if(key== '0') ID=0;///頭
+    if(key== '1') ID=1;///身體
+    if(key== '2') ID=2;///左手
+    if(key== '3') ID=3;///右手
+    if(key== '4') ID=4;///左腳
+    if(key== '5') ID=5;///右腳
+    if(key== '6') ID=6;///左手掌
+    if(key== '7') ID=7;///右手掌
     if(key=='s')
     {
         if(fout == NULL)fout =fopen("motion.txt","w");
