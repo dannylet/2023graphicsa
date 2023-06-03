@@ -7,6 +7,7 @@
 #include <opencv/cv.h>
 #include <GL/glut.h>
 #include "glm.h"
+GLuint tex1,tex2;
 int myTexture(char * filename)
 {
     IplImage * img = cvLoadImage(filename); ///OpenCVÅª¹Ï
@@ -22,9 +23,6 @@ int myTexture(char * filename)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->width, img->height, 0, GL_RGB, GL_UNSIGNED_BYTE, img->imageData);
     return id;
 }
-
-
-
 GLMmodel * head = NULL;///week13 Step02-1
 GLMmodel * body = NULL;///week13 Step02-1
 GLMmodel * righthand = NULL;///week13 Step02-1
@@ -103,9 +101,12 @@ void keyboard(unsigned char key, int x, int y)
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-    glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, tex1);
+        glPushMatrix();
         glScalef(0.08,0.08,0.08);
-        glTranslatef(0,-4,0);
+        glTranslatef(0,-8,-3);
+
+
     ///glTranslatef(teapotX,teapotY, 0);
     ///glutSolidTeapot(0.3);
 
@@ -117,14 +118,12 @@ void display()
 
 
     glPushMatrix();
-        glColor3f(1,1,1);
         glTranslatef(-0.033333, 2.993332, 0);
         glRotatef(angle[1] ,0,1,0);
         glRotatef(angle2[1], 1, 0, 0);
         glTranslatef(0.033333, -2.993332, 0);
         if(show[1])glmDraw(body , GLM_MATERIAL| GLM_TEXTURE);
         glPushMatrix();
-            glColor3f(1,1,1);
             glTranslatef(0.000000, 5.800000, 0);
             glRotatef(angle[0],0,1,0);
             glRotatef(angle2[0],1,0, 0);
@@ -132,14 +131,12 @@ void display()
             if(show[0])glmDraw(head , GLM_MATERIAL| GLM_TEXTURE);
         glPopMatrix();
         glPushMatrix();
-            glColor3f(1,1,1);
             glTranslatef(1.300000, 5.000001, 0);
             glRotatef(angle[2] ,0,1,0);
             glRotatef(angle2[2],1,0,0);
             glTranslatef(-1.300000, -5.000001, 0);
             if(show[2])glmDraw(righthand , GLM_MATERIAL| GLM_TEXTURE);
             glPushMatrix();
-                glColor3f(1,1,1);
                 glTranslatef(2.600000, 4.100001, 0);
                 glRotatef(angle[6] ,0,1,0);
                 glRotatef(angle2[6], 1,0,0);
@@ -148,14 +145,12 @@ void display()
             glPopMatrix();
         glPopMatrix();
          glPushMatrix();
-            glColor3f(1,1,1);
             glTranslatef(-1.299999, 5.000000, 0);
             glRotatef(angle[3] ,0,1,0);
             glRotatef(angle2[3] ,1,0,0);
             glTranslatef(1.299999, -5.000000, 0);
             if(show[3])glmDraw(lefthand , GLM_MATERIAL| GLM_TEXTURE);
             glPushMatrix();
-                glColor3f(1,1,1);
                 glTranslatef(-2.500000, 4.100000, 0);
                 glRotatef(angle[7] ,0,1,0);
                 glRotatef(angle2[7], 1,0, 0);
@@ -164,7 +159,6 @@ void display()
             glPopMatrix();
         glPopMatrix();
         glPushMatrix();
-            glColor3f(1,1,1);
             glTranslatef(0.900000, 1.600000, 0);
             glRotatef(angle[4] ,0,1,0);
             ///glRotatef(angle[4] ,0,0,1);
@@ -174,7 +168,6 @@ void display()
         glPopMatrix();
 
         glPushMatrix();
-            glColor3f(1,1,1);
             glTranslatef(-0.900000, 1.600001, 0);
             glRotatef(angle[5] ,0,1,0);
             glRotatef(angle2[5] ,1,0,0);
@@ -183,20 +176,17 @@ void display()
         glPopMatrix();
 
     glPopMatrix();
-
-
-
-
-
-
-
-
-
-
-
     glPopMatrix();
-    glColor3f(0,1,0);
-    glutSolidTeapot(0.02);
+
+    glBindTexture(GL_TEXTURE_2D, tex2);
+    glBegin(GL_POLYGON);
+        glTexCoord2f(0, 0); glVertex2f(-1, +1);
+        glTexCoord2f(1, 0); glVertex2f(+1, +1);
+        glTexCoord2f(1, 1); glVertex2f(+1, -1);
+        glTexCoord2f(0, 1); glVertex2f(-1, -1);
+    glEnd();
+    ///glColor3f(0,1,0);
+    ///glutSolidTeapot(0.02);
     glutSwapBuffers();
 }
 float oldX=0, oldY=0;
@@ -233,6 +223,7 @@ void mouse(int button, int state, int x,int y)
 int main(int argc, char** argv)
 {
     glutInit(&argc,argv);
+    glutInitWindowSize(700,700);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("week16");
 
@@ -250,8 +241,8 @@ int main(int argc, char** argv)
     rightleg = glmReadOBJ("model/rightleg.obj");
     Lhand = glmReadOBJ("model/Lhand.obj");
     Rhand = glmReadOBJ("model/Rhand.obj");
-
-    myTexture("model/ba.jpg");
+    tex1 = myTexture("model/ba.jpg");
+    tex2 = myTexture("model/ta.jpg");
     glEnable(GL_DEPTH_TEST);
 
     glutMainLoop();
