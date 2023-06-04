@@ -47,7 +47,7 @@ void timer (int t)
 {
     printf("t:%d\n",t);
     if(t<=1410)glutTimerFunc(10, timer, t+1);
-    if(t>1410)glutTimerFunc(6, timer, t+1);
+    if(t>1410)glutTimerFunc(8, timer, t+1);
     if(t%50==0)
     {
         if(fin==NULL) fin=fopen("motion.txt", "r");
