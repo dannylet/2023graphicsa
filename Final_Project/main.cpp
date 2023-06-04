@@ -1,6 +1,3 @@
-///Week15angle[20]
-
-
 #include <windows.h>
 #include <stdio.h>
 #include <opencv/highgui.h> ///使用 OpenCV 2.1 比較簡單, 只要用 High GUI 即可
@@ -25,10 +22,10 @@ int myTexture(char * filename)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->width, img->height, 0, GL_RGB, GL_UNSIGNED_BYTE, img->imageData);
     return id;
 }
-GLMmodel * head = NULL;///week13 Step02-1
-GLMmodel * body = NULL;///week13 Step02-1
-GLMmodel * righthand = NULL;///week13 Step02-1
-GLMmodel * lefthand = NULL;///week13 Step02-1
+GLMmodel * head = NULL;
+GLMmodel * body = NULL;
+GLMmodel * righthand = NULL;
+GLMmodel * lefthand = NULL;
 GLMmodel * leftleg = NULL;
 GLMmodel * rightleg = NULL;
 GLMmodel * Lhand = NULL;
@@ -110,18 +107,6 @@ void display()
         glPushMatrix();
         glScalef(0.08,0.08,0.08);
         glTranslatef(0,-8,-5);
-
-
-    ///glTranslatef(teapotX,teapotY, 0);
-    ///glutSolidTeapot(0.3);
-
-
-
-
-
-
-
-
     glPushMatrix();
         glTranslatef(-0.033333, 2.993332, 0);
         glRotatef(angle[1] ,0,1,0);
@@ -166,10 +151,9 @@ void display()
         glPushMatrix();
             glTranslatef(0.900000, 1.600000, 0);
             glRotatef(angle[4] ,0,1,0);
-            ///glRotatef(angle[4] ,0,0,1);
-            glRotatef(angle2[4], 1, 0, 0);///week15_step03-1
+            glRotatef(angle2[4], 1, 0, 0);
             glTranslatef(-0.900000, -1.600000, 0);
-            if(show[4])glmDraw(leftleg , GLM_MATERIAL | GLM_TEXTURE);///week13 Step03-1
+            if(show[4])glmDraw(leftleg , GLM_MATERIAL | GLM_TEXTURE);
         glPopMatrix();
 
         glPushMatrix();
@@ -177,12 +161,10 @@ void display()
             glRotatef(angle[5] ,0,1,0);
             glRotatef(angle2[5] ,1,0,0);
             glTranslatef(0.900000, -1.600001, 0);
-            if(show[5])glmDraw(rightleg , GLM_MATERIAL| GLM_TEXTURE);///week13 Step03-1
+            if(show[5])glmDraw(rightleg , GLM_MATERIAL| GLM_TEXTURE);
         glPopMatrix();
-
     glPopMatrix();
     glPopMatrix();
-
     glBindTexture(GL_TEXTURE_2D, tex2);
     glBegin(GL_POLYGON);
         glTexCoord2f(0, 0); glVertex2f(-1, +1);
@@ -190,8 +172,6 @@ void display()
         glTexCoord2f(1, 1); glVertex2f(+1, -1);
         glTexCoord2f(0, 1); glVertex2f(-1, -1);
     glEnd();
-    ///glColor3f(0,1,0);
-    ///glutSolidTeapot(0.02);
     glutSwapBuffers();
 }
 float oldX=0, oldY=0;
@@ -203,7 +183,6 @@ void motion(int x,int y)
     angle2[ID] += (y- oldY);
     oldX = x;
     oldY = y;
-    ///printf("glTranslatef(%f, %f, 0);\n", teapotX, teapotY);
     glutPostRedisplay();
 }
 void mouse(int button, int state, int x,int y)
