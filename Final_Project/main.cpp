@@ -1,12 +1,14 @@
 ///Week15angle[20]
 
 
-
-#include<stdio.h>
+#include <windows.h>
+#include <stdio.h>
 #include <opencv/highgui.h> ///使用 OpenCV 2.1 比較簡單, 只要用 High GUI 即可
 #include <opencv/cv.h>
 #include <GL/glut.h>
 #include "glm.h"
+#include "CMP3_MCI.h"
+CMP3_MCI myMP3;
 GLuint tex1,tex2;
 int myTexture(char * filename)
 {
@@ -40,10 +42,11 @@ float angle[20]={};
 float angle2[20]={};
 float OldAngle[20]={}, NewAngle[20]={};
 float OldAngle2[20]={}, NewAngle2[20]={};
+
 void timer (int t)
 {
     printf("t:%d\n",t);
-    glutTimerFunc(8, timer, t+1);
+    glutTimerFunc(10, timer, t+1);
     if(t%50==0)
     {
         if(fin==NULL) fin=fopen("motion.txt", "r");
@@ -96,6 +99,7 @@ void keyboard(unsigned char key, int x, int y)
     if(key =='p')
     {
         glutTimerFunc(0, timer, 0);
+        myMP3.Play();
     }
 }
 void display()
@@ -226,7 +230,8 @@ int main(int argc, char** argv)
     glutInitWindowSize(700,700);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("week16");
-
+    char filename[]="C:\\Users\\木頭\\Desktop\\2023graphicsa\\Final_Project\\song.mp3";
+    myMP3.Load(filename);
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
     glutMotionFunc(motion);
