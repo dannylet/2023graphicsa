@@ -46,7 +46,8 @@ float OldAngle2[20]={}, NewAngle2[20]={};
 void timer (int t)
 {
     printf("t:%d\n",t);
-    glutTimerFunc(10, timer, t+1);
+    if(t<=1410)glutTimerFunc(10, timer, t+1);
+    if(t>1410)glutTimerFunc(6, timer, t+1);
     if(t%50==0)
     {
         if(fin==NULL) fin=fopen("motion.txt", "r");
@@ -108,7 +109,7 @@ void display()
         glBindTexture(GL_TEXTURE_2D, tex1);
         glPushMatrix();
         glScalef(0.08,0.08,0.08);
-        glTranslatef(0,-8,-3);
+        glTranslatef(0,-8,-5);
 
 
     ///glTranslatef(teapotX,teapotY, 0);
