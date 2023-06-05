@@ -188,28 +188,14 @@ void mouse(int button, int state, int x,int y)
 {
     oldX = x;
     oldY = y;
-    ///teapotX=(x-150)/150.0;
-    ///teapotY=(150-y)/150.0;
-    ///if(fout==NULL) fout = fopen ("file4.txt","w");
-    ///fprintf(fout,"%f %f\n", teapotX, teapotY);
 }
-//void keyboard(unsigned char key, int x, int y)
-//{
-//    if(fin==NULL)
-//    {
-//        fclose(fout);
-//        fin = fopen("file4.txt", "r");
-//    }
-//    fscanf(fin, "%f %f", &teapotX,&teapotY);
-//    display();
-//}
 int main(int argc, char** argv)
 {
     glutInit(&argc,argv);
     glutInitWindowSize(1000,1000);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("final_project");
-    char filename[]="C:\\Users\\木頭\\Desktop\\2023graphicsa\\Final_Project\\song.mp3";
+    char filename[]="C:\\Users\\木頭\\Desktop\\2023graphicsa\\Final_Project\\song.mp3";///請改成下載檔案後的位置
     myMP3.Load(filename);
     glutDisplayFunc(display);
     glutMouseFunc(mouse);
