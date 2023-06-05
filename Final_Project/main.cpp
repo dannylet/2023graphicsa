@@ -73,7 +73,7 @@ void keyboard(unsigned char key, int x, int y)
     if(key== '5') ID=5;///右腳
     if(key== '6') ID=6;///左手掌
     if(key== '7') ID=7;///右手掌
-    if(key=='s')
+    if(key=='s')///儲存
     {
         if(fout == NULL)fout =fopen("motion.txt","w");
         for(int i=0; i<20;i++)
@@ -84,7 +84,7 @@ void keyboard(unsigned char key, int x, int y)
         fprintf(fout, "\n");
         printf("finish one\n");
     }
-    if(key =='r')
+    if(key =='r')///讀取
     {
         if(fin==NULL)fin = fopen("motion.txt","r");
         for(int i=0;i<20;i++)
@@ -94,7 +94,7 @@ void keyboard(unsigned char key, int x, int y)
         }
         glutPostRedisplay();
     }
-    if(key =='p')
+    if(key =='p')///播放
     {
         glutTimerFunc(0, timer, 0);
         myMP3.Play();
@@ -155,7 +155,6 @@ void display()
             glTranslatef(-0.900000, -1.600000, 0);
             if(show[4])glmDraw(leftleg , GLM_MATERIAL | GLM_TEXTURE);
         glPopMatrix();
-
         glPushMatrix();
             glTranslatef(-0.900000, 1.600001, 0);
             glRotatef(angle[5] ,0,1,0);
@@ -207,9 +206,9 @@ void mouse(int button, int state, int x,int y)
 int main(int argc, char** argv)
 {
     glutInit(&argc,argv);
-    glutInitWindowSize(700,700);
+    glutInitWindowSize(1000,1000);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
-    glutCreateWindow("week16");
+    glutCreateWindow("final_project");
     char filename[]="C:\\Users\\木頭\\Desktop\\2023graphicsa\\Final_Project\\song.mp3";
     myMP3.Load(filename);
     glutDisplayFunc(display);
